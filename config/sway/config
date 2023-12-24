@@ -4,6 +4,40 @@
 #
 # Read `man 5 sway` for a complete reference.
 
+#----------------#
+# set gtk+ theme #
+#----------------#
+    set $gnome-schema org.gnome.desktop.interface
+    exec_always {
+        gsettings set $gnome-schema gtk-theme 'Adwaita'
+        # gsettings set $gnome-schema gtk-theme 'Adwaita-dark'
+        # gsettings set $gnome-schema gtk-theme 'Catppuccin'
+        # gsettings set $gnome-schema icon-theme 'Papirus-Dark'
+        # gsettings set $gnome-schema icon-theme 'Papirus-Dark'
+        gsettings set $gnome-schema cursor-theme 'volantes_cursors'
+        # gsettings set $gnome-schema font-name 'SourceCodePro Medium 12'
+    }
+
+
+#========================#
+# Appearance and Theming #
+#========================#
+# Declare Colors:
+set $background #332b2b
+set $color_urgent #fb4934
+set $text_color #ffffff
+set $title_bg_unfocused #666666
+set $title_outline_active #0e844e
+set $title_outline_unfocused #332b2b
+
+# Set Colors:           Border                   Background          Text          Indicator             Child Border
+client.background       $background
+client.focused          $title_outline_active    $background         $text_color   $title_outline_active $title_outline_active
+client.focused_inactive $title_outline_unfocused $background         $text_color   $text_color           $title_outline_unfocused
+client.unfocused        $title_outline_unfocused $title_bg_unfocused $text_color   $title_outline_active
+client.urgent           $color_urgent            $color_urgent       $color_urgent $color_urgent         $color_urgent
+
+
 #window gaps
 gaps inner 7
 gaps outer 4
@@ -41,8 +75,8 @@ set $menu $rofi_cmd -show drun -drun-modes drun#run -modes drun
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # Requires: desktop-backgrounds-compat, swaybg
 #output * bg /usr/share/backgrounds/default.png fill
-set $wallpapers_path $HOME/Pictures/wallpapers
-output * bg `find $wallpapers_path -type f | shuf -n 1` fill
+set $wallpapersPath $HOME/Pictures/Wallpapers
+output * bg `find $wallpapersPath -type f | shuf -n 1` fill
 #
 # Example configuration:
 #
@@ -50,6 +84,7 @@ output * bg `find $wallpapers_path -type f | shuf -n 1` fill
 # output eDP-1 resolution 1920x1080
 # output * resolution 1920x1080
 output eDP-1 resolution --custom 1920x1080
+output DP-1 resolution --custom 1280x1024
 # output * scale 0.75
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
@@ -67,6 +102,10 @@ output eDP-1 resolution --custom 1920x1080
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
+### Mouse Cursor
+#
+# seat seat0 xcursor_theme Breeze
+
 ### Input configuration
 #
 ## Touchpad Configuration
@@ -77,6 +116,8 @@ input "1739:31082:Synaptics_TM3108-002" {
 	natural_scroll enabled
 	middle_emulation enabled
 }
+
+input "1:1:AT_Translated_Set_2_keyboard" xkb_numlock enabled
 
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
