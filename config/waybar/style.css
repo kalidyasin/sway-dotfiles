@@ -72,6 +72,7 @@ window#waybar {
     color: @textcolor1;
     background: @workspacesbackground2;
     border-radius: 16px;
+    box-shadow: 0px -2px @textcolor1;
 }
 
 /* -----------------------------------------------------
