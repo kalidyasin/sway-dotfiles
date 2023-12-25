@@ -23,12 +23,15 @@
 # Appearance and Theming #
 #========================#
 # Declare Colors:
-set $background #332b2b
+# set $background #332b2b
+set $background #093456
 set $color_urgent #fb4934
 set $text_color #ffffff
 set $title_bg_unfocused #666666
-set $title_outline_active #0e844e
-set $title_outline_unfocused #332b2b
+# set $title_outline_active #0e844e
+set $title_outline_active #6ea6a7
+# set $title_outline_unfocused #332b2b
+set $title_outline_unfocused #093456
 
 # Set Colors:           Border                   Background          Text          Indicator             Child Border
 client.background       $background
@@ -43,7 +46,7 @@ gaps inner 7
 gaps outer 4
 
 # disable window titlebar
-default_border pixel 2 
+default_border pixel 3
 
 # disable focus follows mouse
 focus_follows_mouse no
