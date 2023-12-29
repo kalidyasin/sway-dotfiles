@@ -1,6 +1,6 @@
 {
     // Modules configuration
-     "sway/workspaces": {
+    "sway/workspaces": {
         "on-click": "activate",
         "active-only": false,
         "all-outputs": true,
@@ -12,7 +12,7 @@
             "4": "",
             "5": ""
         }       
-     },
+    },
 
     // Taskbar
     "wlr/taskbar": {
@@ -22,7 +22,7 @@
         "on-click": "activate",
         "on-click-middle": "close",
         "ignore-list": [
-           "Alacritty"
+            "Alacritty"
         ],
         "app_ids-mapping": {
             "firefoxdeveloperedition": "firefox-developer-edition"
@@ -55,7 +55,7 @@
         "on-click": "chromium https://studio.youtube.com",
         "tooltip": false
     },
-    
+
     // Cliphist
     "custom/cliphist": {
         "format": "",
@@ -83,7 +83,7 @@
         "format": "THEME STARTER",
         "tooltip": false
     },
-    
+
     // Wallpaper
     "custom/wallpaper": {
         "format": "",
@@ -98,7 +98,7 @@
         "on-click": "~/dotfiles/waybar/themeswitcher.sh",
         "tooltip": false
     },
-    
+
     // Settings
     "custom/settings": {
         "format": "",
@@ -181,7 +181,7 @@
     },
 
 
-    
+
     // Power Menu
     "custom/exit": {
         "format": "",
@@ -191,13 +191,15 @@
 
 
     "tray": {
-        // "icon-size": 21,
+        "icon-size": 21,
         "spacing": 10
     },
+
+    // clock
     "clock": {
         // "timezone": "America/New_York",
-	"format": "{:%I:%M %p}",
-	// "format": "{:%h %d | %I:%M %p}",
+        "format": "{:%I:%M %p}",
+        // "format": "{:%h %d | %I:%M %p}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
     },
@@ -215,7 +217,7 @@
 
     // Memory
     "memory": {
-        "format": "/   {}% ",
+        "format": "/   {}% ",
         "on-click": "alacritty -e htop"
     },
 
@@ -275,7 +277,7 @@
         "modules": [
             "custom/filemanager",
             "custom/browser"
-         ]
+        ]
     },
 
     // Network
@@ -344,6 +346,15 @@
         "format": "{user}",
         "interval": 60,
         "icon": false,
-    }
+    },
 
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "tooltip": false,
+        "format-icons":{
+            "activated": "Auto lock OFF",
+            "deactivated": "ON"
+        }
+    }
 }
+
