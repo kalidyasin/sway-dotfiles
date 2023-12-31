@@ -11,6 +11,8 @@ window:
   opacity: 0.99
   decorations: None
   
+shell:
+  program: /bin/zsh
 
 scrolling:
   history: 1000
@@ -18,16 +20,16 @@ scrolling:
 
 font:
   normal:
-    family: Hack Nerd Font
+    family: MesloLGS Nerd Font
     style: Regular
   bold:
-    family: Hack Nerd Font
+    family: MesloLGS Nerd Font
     style: Bold
   italic:
-    family: Hack Nerd Font
+    family: MesloLGS Nerd Font
     style: Italic
   bold_italic:
-    family: Hack Nerd Font
+    family: MesloLGS Nerd Font
     style: Bold Italic
   size: 11
 
