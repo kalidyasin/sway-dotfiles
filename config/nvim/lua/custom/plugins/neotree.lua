@@ -9,8 +9,8 @@ return {
     -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
   },
   keys = {
-      { "<leader>nn", "<cmd>Neotree toggle<cr>", desc = "NeoTree" },
-      { "<leader>nl", "<cmd>Neotree left<cr>", desc = "NeoTree Leftside" },
-      { "<leader>nf", "<cmd>Neotree float<cr>", desc = "NeoTree Float" }
+      { "<leader>nn", "<cmd>Neotree toggle<cr>", desc = "NeoTree reveal" },
+      { "<leader>nl", "<cmd>Neotree left<cr>", desc = "NeoTree Leftside reveal" },
+      { "<leader>nf", "<cmd>Neotree float<cr>", desc = "NeoTree Float reveal" }
     }
 }
