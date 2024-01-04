@@ -191,11 +191,22 @@ require('lazy').setup({
 
   {
     -- Theme inspired by Atom
-    -- 'navarasu/onedark.nvim',
-    'kalidyasin/onedark.nvim',
+    'navarasu/onedark.nvim',
+    -- 'kalidyasin/onedark.nvim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'onedark'
+      -- vim.cmd.colorscheme 'onedark'
+      require('onedark').setup {
+        style = 'deep',
+        transparent = true,
+        term_colors = true,
+
+        -- Lualine options --
+        lualine = {
+          transparent = true, -- lualine center bar transparency
+        },
+      }
+      require('onedark').load()
     end,
   },
 

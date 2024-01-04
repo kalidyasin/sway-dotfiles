@@ -28,15 +28,15 @@ configuration {
 @theme "/dev/null"
 
 * {
-  bg: #292b4999;
-  background: #292b4999;
-  bg-alt: #2f325499;
-  bg-selected: #5c637099;
-  color11: #5c637099;
+  bg: #1a212eaa;
+  background: #1a212eaa;
+  bg-alt: #21283baa;
+  bg-selected: #283347aa;
+  color11: #5c6370aa;
 
-  fg: #abb2bf;
-  foreground: #abb2bf;
-  fg-alt: #adb4c1;
+  fg: #93a4c3;
+  foreground: #93a4c3;
+  fg-alt: #abb2bf;
 
   
   border: 0;
@@ -62,7 +62,7 @@ window {
     anchor:                       center;
     fullscreen:                   false;
     enabled:                      true;
-    border-radius:                10px;
+    border-radius:                2px; // change it to 10px for rounded
     background-color:             transparent;
 }
 
