@@ -57,11 +57,14 @@ program = "/bin/zsh"
 blur = true
 decorations = "None"
 opacity = 0.95
+title = "Alacritty"
+# dynamic_title = false
+padding = { x = 10, y = 5 }
 
 [window.class]
 general = "Alacritty"
 instance = "Alacritty"
 
-[window.padding]
-x = 10
-y = 5
+# [window.padding]
+# x = 10
+# y = 5
