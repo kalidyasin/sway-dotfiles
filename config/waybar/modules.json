@@ -71,10 +71,10 @@
         "tooltip-format": "{}",
         "escape": true,
         "return-type": "json",       
-        "exec": "~/dotfiles/scripts/updates.sh",
+        "exec": "~/Dotfiles/scripts/updates.sh",
         "restart-interval": 18000,
-        "on-click": "alacritty -e ~/dotfiles/scripts/installupdates.sh",
-        "on-click-right": "~/dotfiles/.settings/software.sh",
+        "on-click": "alacritty -e ~/Dotfiles/scripts/installupdates.sh",
+        "on-click-right": "~/Dotfiles/.settings/software.sh",
         "tooltip": false
     },
 
