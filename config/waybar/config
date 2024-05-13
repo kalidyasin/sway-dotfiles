@@ -16,14 +16,14 @@
     "spacing": 0,
 
     // Load Modules
-    "include": ["~/dotfiles/config/waybar/modules.json"],
+    "include": ["~/Dotfiles/config/waybar/modules.json"],
 
     // Modules Left
     "modules-left": [
         "custom/appmenu",
-        "custom/settings",
-        "custom/waybarthemes",
-        "custom/wallpaper",
+        // "custom/settings",
+        // "custom/waybarthemes",
+        //"custom/wallpaper",
         "wlr/taskbar",
         "group/quicklinks",
         "sway/mode",
