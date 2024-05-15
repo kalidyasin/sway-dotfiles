@@ -102,7 +102,9 @@ output eDP-1 resolution 1920x1080
 #
 exec swayidle -w \
          timeout 300 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         timeout 420 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         timeout 600 'swaymsg "output * power on"; sleep 1; systemctl suspend' \
+         # timeout 600 'systemctl suspend' resume 'swaymsg "output * poweron on"' \
          before-sleep 'swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
