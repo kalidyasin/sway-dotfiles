@@ -30,8 +30,8 @@ mods = "Super|Shift"
 history = 1000
 multiplier = 3
 
-[shell]
-program = "/bin/zsh"
+# [shell]
+# program = "/bin/zsh"
 
 [window]
 blur = true
