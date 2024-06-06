@@ -30,7 +30,7 @@ zinit light jeffreytse/zsh-vi-mode
 # Add in snippets
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
-zinit snippet OMZP::tmuxinator
+# zinit snippet OMZP::tmuxinator
 zinit snippet OMZP::docker
 zinit snippet OMZP::command-not-found
 
@@ -139,13 +139,28 @@ pathappend "$HOME/.config/tmux/plugins/tmuxifier/bin"
 #######################################################
 
 alias ls='lsd'
+alias ll='lsd -la'
+alias la='lsd -a'
+alias vi='vim'
 alias vim='nvim'
 alias c='clear'
+alias q='exit'
+
+#######################################################
+# Editors and Visuals
+#######################################################
+export EDITOR='nvim'
+export VISUAL='nvim'
 
 # enable command-not-found if installed
 if [ -f /usr/share/fzf/shell/key-bindings.zsh ]; then
     . /usr/share/fzf/shell/key-bindings.zsh
 fi
+
+#######################################################
+# ZSH Syntax highlighting
+#######################################################
+source ~/Dotfiles/config/zsh/zsh-syntax-highlightin-tokyonight.zsh
 
 #######################################################
 # Shell integrations
