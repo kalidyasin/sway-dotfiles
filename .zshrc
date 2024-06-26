@@ -176,19 +176,6 @@ pathappend "$HOME/.config/tmux/plugins/tmuxifier/bin"
 # Aliases
 #######################################################
 
-if [[ -x "$(command -v nvim)" ]]; then
-	alias vi='nvim'
-	alias vim='nvim'
-	alias svi='sudo nvim'
-	alias vis='nvim "+set si"'
-elif [[ -x "$(command -v vim)" ]]; then
-	alias vi='vim'
-	alias svi='sudo vim'
-	alias vis='vim "+set si"'
-fi
-
-alias ls='lsd -F --group-dirs first'
-alias ll='lsd --all --header --long --group-dirs first'
 alias c='clear'
 alias q='exit'
 alias ..='cd ..'
@@ -200,6 +187,25 @@ alias rmdir='rmdir -v'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+
+# Alias for neovim
+if [[ -x "$(command -v nvim)" ]]; then
+	alias vi='nvim'
+	alias vim='nvim'
+	alias svi='sudo nvim'
+	alias vis='nvim "+set si"'
+elif [[ -x "$(command -v vim)" ]]; then
+	alias vi='vim'
+	alias svi='sudo vim'
+	alias vis='vim "+set si"'
+fi
+
+# Alias for lsd
+if [[ -x "$(command -v lsd)" ]]; then
+	alias ls='lsd -F --group-dirs first'
+	alias ll='lsd --all --header --long --group-dirs first'
+	alias tree='lsd --tree'
+fi
 
 # Alias to launch a document, file, or URL in it's default X application
 if [[ -x "$(command -v xdg-open)" ]]; then
@@ -312,8 +318,7 @@ function mvg() {
 
 # Create and go to the directory
 function mkdirg() {
-	mkdir -p "$@"
-	cd "$@"
+	mkdir -p "$@" && cd "$@"
 }
 
 # Prints random height bars across the width of the screen
@@ -337,8 +342,9 @@ source "/usr/share/fzf/shell/key-bindings.zsh"
 
 # Zoxide config for zsh plugins 
 eval "$(zoxide init --cmd cd zsh)"
+# eval "$(zoxide init zsh)"
 
 
 # Tmuxifier config for zsh plugins  
-# eval "$(tmuxifier init -)"
+eval "$(tmuxifier init -)"
 
