@@ -61,9 +61,9 @@
     // Cliphist
     "custom/cliphist": {
         "format": "",
-        "on-click": "sleep 0.1 && ~/dotfiles/scripts/cliphist.sh",
-        "on-click-right": "sleep 0.1 && ~/dotfiles/scripts/cliphist.sh d",
-        "on-click-middle": "sleep 0.1 && ~/dotfiles/scripts/cliphist.sh w",
+        "on-click": "sleep 0.1 && ~/Dotfiles/scripts/cliphist.sh",
+        "on-click-right": "sleep 0.1 && ~/Dotfiles/scripts/cliphist.sh d",
+        "on-click-middle": "sleep 0.1 && ~/Dotfiles/scripts/cliphist.sh w",
         "tooltip": false
     },
 
