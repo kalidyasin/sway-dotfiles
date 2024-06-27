@@ -33,8 +33,10 @@ zinit snippet OMZP::sudo
 # zinit snippet OMZP::docker
 zinit snippet OMZP::command-not-found
 
-# Disable the cursor style feature
-ZVM_CURSOR_STYLE_ENABLED=false
+# Change cursor shape for different vi modes
+  ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
+  ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
+  ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_BLINKING_UNDERLINE
 
 # Load completions
 autoload -Uz compinit && compinit
@@ -332,6 +334,11 @@ function random_bars() {
 	done
 	echo
 }
+
+#######################################################
+# ZSH Syntax highlighting
+#######################################################
+source ~/.config/zsh/zsh-syntax-highlightin-tokyonight.zsh
 
 #######################################################
 # Shell integrations
