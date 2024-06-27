@@ -1,0 +1,56 @@
+{
+    // General Settings
+
+    // Position TOP
+    "layer": "top",
+    "margin-bottom": 0,
+
+    // Position BOTTOM
+    // "position": "bottom",
+    // "margin-top": 0,
+    // "margin-bottom": 14,
+    
+    "layer": "top",
+    "margin-left": 0,
+    "margin-right": 0,    
+    "spacing": 0,
+
+    // Load Modules
+    "include": ["~/Dotfiles/config/waybar/modules.json"],
+
+    // Modules Left
+    "modules-left": [
+        "custom/appmenu",
+        // "custom/settings",
+        // "custom/waybarthemes",
+        //"custom/wallpaper",
+        "wlr/taskbar",
+        "group/quicklinks",
+        "sway/mode",
+        "sway/scratchpad",
+        "sway/window"
+    ],
+
+
+    // Modules Center
+    "modules-center": [
+        "sway/workspaces",
+    ],
+
+
+    "modules-right": [
+        "custom/updates",
+        "pulseaudio",
+        "bluetooth",
+        "battery", 
+        "network",
+        "group/hardware",
+        "custom/cliphist",
+        "idle_inhibitor",
+	"tray",
+        "custom/exit",
+        "clock"
+    ],
+
+}
+

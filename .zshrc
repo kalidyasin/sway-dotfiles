@@ -59,6 +59,45 @@ setopt numericglobsort     # sort filenames numerically when it makes sense
 setopt promptsubst         # enable command substitution in prompt
 
 #######################################################
+# Environment Variables
+#######################################################
+# export EDITOR=nvim
+# export VISUAL=nvim
+export EDITOR=nvim visudo
+export VISUAL=nvim visudo
+export SUDO_EDITOR=nvim
+export FCEDIT=nvim
+export TERMINAL=alacritty
+export BROWSER=com.brave.Browser
+if [[ -x "$(command -v bat)" ]]; then
+	export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+	export PAGER=bat
+fi
+
+if [[ -x "$(command -v fzf)" ]]; then
+	export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
+	  --info=inline-right \
+	  --ansi \
+	  --layout=reverse \
+	  --border=rounded \
+	  --color=border:#27a1b9 \
+	  --color=fg:#c0caf5 \
+	  --color=gutter:#16161e \
+	  --color=header:#ff9e64 \
+	  --color=hl+:#2ac3de \
+	  --color=hl:#2ac3de \
+	  --color=info:#545c7e \
+	  --color=marker:#ff007c \
+	  --color=pointer:#ff007c \
+	  --color=prompt:#2ac3de \
+	  --color=query:#c0caf5:regular \
+	  --color=scrollbar:#27a1b9 \
+	  --color=separator:#ff9e64 \
+	  --color=spinner:#ff007c \
+	"
+fi
+
+#######################################################
 # ZSH Keybindings
 #######################################################
 
@@ -138,24 +177,162 @@ pathappend "$HOME/.config/tmux/plugins/tmuxifier/bin"
 # Aliases
 #######################################################
 
-alias ls='lsd'
-alias ll='lsd -la'
-alias la='lsd -a'
-alias vi='vim'
-alias vim='nvim'
 alias c='clear'
 alias q='exit'
+alias ..='cd ..'
+alias mkdir='mkdir -pv'
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias rm='rm -iv'
+alias rmdir='rmdir -v'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# Alias for neovim
+if [[ -x "$(command -v nvim)" ]]; then
+	alias vi='nvim'
+	alias vim='nvim'
+	alias svi='sudo nvim'
+	alias vis='nvim "+set si"'
+elif [[ -x "$(command -v vim)" ]]; then
+	alias vi='vim'
+	alias svi='sudo vim'
+	alias vis='vim "+set si"'
+fi
+
+# Alias for lsd
+if [[ -x "$(command -v lsd)" ]]; then
+	alias ls='lsd -F --group-dirs first'
+	alias ll='lsd --all --header --long --group-dirs first'
+	alias tree='lsd --tree'
+fi
+
+# Alias to launch a document, file, or URL in it's default X application
+if [[ -x "$(command -v xdg-open)" ]]; then
+	alias open='runfree xdg-open'
+fi
+
+# Alias to launch a document, file, or URL in it's default PDF reader
+if [[ -x "$(command -v evince)" ]]; then
+    alias pdf='runfree evince'
+fi
+
+# Alias For bat
+# Link: https://github.com/sharkdp/bat
+if [[ -x "$(command -v bat)" ]]; then
+    alias cat='bat'
+fi
+
+# Alias for lazygit
+# Link: https://github.com/jesseduffield/lazygit
+if [[ -x "$(command -v lazygit)" ]]; then
+    alias lg='lazygit'
+fi
+
+# Alias for FZF
+# Link: https://github.com/junegunn/fzf
+if [[ -x "$(command -v fzf)" ]]; then
+    alias fzf='fzf --preview "bat --style=numbers --color=always --line-range :500 {}"'
+    # Alias to fuzzy find files in the current folder(s), preview them, and launch in an editor
+	if [[ -x "$(command -v xdg-open)" ]]; then
+		alias preview='open $(fzf --info=inline --query="${@}")'
+	else
+		alias preview='edit $(fzf --info=inline --query="${@}")'
+	fi
+fi
+
+# Get local IP addresses
+if [[ -x "$(command -v ip)" ]]; then
+    alias iplocal="ip -br -c a"
+else
+    alias iplocal="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
+fi
+
+# Get public IP addresses
+if [[ -x "$(command -v curl)" ]]; then
+    alias ipexternal="curl -s ifconfig.me && echo"
+elif [[ -x "$(command -v wget)" ]]; then
+    alias ipexternal="wget -qO- ifconfig.me && echo"
+fi
 
 #######################################################
-# Editors and Visuals
+# FZF
 #######################################################
-export EDITOR='nvim'
-export VISUAL='nvim'
 
-# enable command-not-found if installed
+# enable fzf keybindings
 if [ -f /usr/share/fzf/shell/key-bindings.zsh ]; then
     . /usr/share/fzf/shell/key-bindings.zsh
 fi
+
+#######################################################
+# Functions
+#######################################################
+
+# Start a program but immediately disown it and detach it from the terminal
+function runfree() {
+	"$@" > /dev/null 2>&1 & disown
+}
+
+# Copy file with a progress bar
+function cpp() {
+	if [[ -x "$(command -v rsync)" ]]; then
+		# rsync -avh --progress "${1}" "${2}"
+		rsync -ah --info=progress2 "${1}" "${2}"
+	else
+		set -e
+		strace -q -ewrite cp -- "${1}" "${2}" 2>&1 \
+		| awk '{
+		count += $NF
+		if (count % 10 == 0) {
+			percent = count / total_size * 100
+			printf "%3d%% [", percent
+			for (i=0;i<=percent;i++)
+				printf "="
+				printf ">"
+				for (i=percent;i<100;i++)
+					printf " "
+					printf "]\r"
+				}
+			}
+		END { print "" }' total_size=$(stat -c '%s' "${1}") count=0
+	fi
+}
+
+# Copy and go to the directory
+function cpg() {
+	if [[ -d "$2" ]];then
+		cp "$1" "$2" && cd "$2"
+	else
+		cp "$1" "$2"
+	fi
+}
+
+# Move and go to the directory
+function mvg() {
+	if [[ -d "$2" ]];then
+		mv "$1" "$2" && cd "$2"
+	else
+		mv "$1" "$2"
+	fi
+}
+
+# Create and go to the directory
+function mkdirg() {
+	mkdir -p "$@" && cd "$@"
+}
+
+# Prints random height bars across the width of the screen
+# (great with lolcat application on new terminal windows)
+function random_bars() {
+	columns=$(tput cols)
+	chars=(▁ ▂ ▃ ▄ ▅ ▆ ▇ █)
+	for ((i = 1; i <= $columns; i++))
+	do
+		echo -n "${chars[RANDOM%${#chars} + 1]}"
+	done
+	echo
+}
 
 #######################################################
 # ZSH Syntax highlighting
