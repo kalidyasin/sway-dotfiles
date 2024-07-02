@@ -75,6 +75,8 @@ set $term kitty
 # Recommends: rofi-wayland
 set $rofi_cmd rofi \
         -terminal '$term'
+
+set $powermenu $HOME/.config/rofi/bin/powermenu
 # Shows a combined list of the applications with desktop files and
 # executables from PATH.
 # TODO: add window with the next release of rofi-wayland
@@ -147,6 +149,9 @@ input "1:1:AT_Translated_Set_2_keyboard" xkb_numlock enabled
 
     # Start your launcher
     bindsym $mod+d exec $menu
+
+    # Take a screenshot
+    bindsym $mod+p exec $powermenu
 
     # Clipboard manager
     bindsym $mod+Shift+v exec "cliphist list | rofi -dmenu  | cliphist decode | wl-copy"
