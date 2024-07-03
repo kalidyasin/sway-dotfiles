@@ -10,7 +10,6 @@
     "sway/workspaces",
     "custom/swap",
     "tray",
-    "sway/window",
     "sway/mode",
     "custom/cava-internal",
     "mpd#2",
@@ -24,13 +23,9 @@
     "pulseaudio",
     "custom/keyboard-layout",
     "temperature",
-    // "cpu",
-    // "memory",
-    // "disk",
-    "group/hardware",
+    "memory",
     "battery",
     "network",
-    "idle_inhibitor",
     "custom/power"
   ],
 
@@ -99,7 +94,7 @@
   "custom/swap": {
     "on-click": "~/.config/waybar/scripts/swap.sh",
     "tooltip": "Swap between waybar configs",
-    "format": "Bg  "
+    "format": "Bg  "
   },
   "custom/mpd": {
     "format": " {title} - {artist}",
@@ -117,26 +112,18 @@
   "sway/mode": {
     "format": "<span style=\"italic\">{}</span>"
   },
-    // Sway Window
-    "sway/window": {
-        "rewrite": {
-            "(.*) - Brave": "$1",
-            "(.*) - Chromium": "$1",
-            "(.*) - Brave Search": "$1",
-            "(.*) - Outlook": "$1",
-            "(.*) Microsoft Teams": "$1"
-        },
-        "separate-outputs": true
-    },
+  "sway/window": {
+    "format": "~ {app_id}"
+  },
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
-      "activated": "",
-      "deactivated": ""
+      "activated": "",
+      "deactivated": ""
     }
   },
   "tray": {
-    // "icon-size": 14,
+    "icon-size": 14,
     "spacing": 5
   },
   "clock": {
@@ -148,11 +135,11 @@
       "on-scroll": 1,
       "on-click-right": "mode",
       "format": {
-	"months": "<span color='#bb9af7'><b>{}</b></span>",  // Purple
-	"days": "<span color='#7aa2f7'><b>{}</b></span>",    // Blue
-	"weeks": "<span color='#9ece6a'><b>W{}</b></span>",  // Green
-	"weekdays": "<span color='#e0af68'><b>{}</b></span>",// Yellow
-	"today": "<span background='#2ac3de' color='#1a1b26'><b><u>{}</u></b></span>" // Cyan background with dark text
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
       }
     },
     "actions": {
@@ -162,18 +149,42 @@
       "on-scroll-up": "shift_up",
       "on-scroll-down": "shift_down"
     },
-    "format": "{:%a %d %b | %I:%M %p}", //12 hour format
-    "format-alt": "  {:%Y-%m-%d  %H:%M:%S}",
+    "format": "  {:%a %d %b  %I:%M %p}", //12 hour format
+    // "format": " {:%d %m %Y  %H:%M}",	//24 hour format
+    "format-alt": "  {:%d/%m/%Y  %H:%M:%S}",
+    // //"timezones": [ "Kolkata" ],
+    // //"max-length": 200
     "interval": 1
   },
-
-  // System
-  "custom/system": {
-    "format": "",
-    "tooltip": false
-  },
+  // "clock": {
+  //     "format": "  {:%H:%M:%S}",
+  //     "format-alt": "  {:%A, %B %d, %Y (%R)}",
+  //     "tooltip-format": "<tt><small>{calendar}</small></tt>",
+  //     "calendar": {
+  //         "mode"          : "month",
+  //         "mode-mon-col"  : 3,
+  //         "weeks-pos"     : "right",
+  //         "on-scroll"     : 1,
+  //         "on-click-right": "mode",
+  //         "format": {
+  //             "months":     "<span color='#ffead3'><b>{}</b></span>",
+  //             "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+  //             "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+  //             "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+  //             "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+  //         }
+  //     },
+  //     "actions": {
+  //         "on-click-right": "mode",
+  //         "on-click-forward": "tz_up",
+  //         "on-click-backward": "tz_down",
+  //         "on-scroll-up": "shift_up",
+  //         "on-scroll-down": "shift_down"
+  //     },
+  //     "interval": 1
+  // },
   "cpu": {
-    "format": " {usage: >3}%",
+    "format": "﬙ {usage: >3}%",
     "on-click": "alacritty -e htop"
   },
   "memory": {
@@ -187,39 +198,14 @@
     // "format-critical": "{temperatureC}°C ",
     "format": "  {temperatureC}°C"
   },
-  // Harddisc space used
-  "disk": {
-    // "interval": 30,
-    "format": " {percentage_used}% ",
-    "path": "/",
-    //"on-click": "alacritty -e htop"
-  }, 
-    // Group Hardware
-    "group/hardware": {
-        "orientation": "inherit",
-        "drawer": {
-            "transition-duration": 300,
-            "children-class": "not-memory",
-            "transition-left-to-right": false
-        },        
-        "modules": [
-            "custom/system",
-            "disk",
-            "cpu",
-            "memory"
-            // "backlight",
-            //"sway/language"
-        ]
-    },
   "backlight": {
     // "device": "acpi_video1",
     "format": "{icon} {percent: >3}%",
-    // "format-icons": ["", ""],
-        "format-icons": ["", "", "", "", "", "", "", "", ""],
-    "on-scroll-down": "brightnessctl -c backlight set 5%-",
-    // "on-scroll-down": "light -A 5 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob",
-    "on-scroll-up": "brightnessctl -c backlight set +5%"
-    // "on-scroll-up": "light -U 5 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob"
+    "format-icons": ["", ""],
+    // "on-scroll-down": "brightnessctl -c backlight set 5%-",
+    "on-scroll-down": "light -A 5 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob",
+    // "on-scroll-up": "brightnessctl -c backlight set +5%"
+    "on-scroll-up": "light -U 5 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob"
   },
   "battery": {
     "states": {
@@ -228,12 +214,10 @@
       "critical": 15
     },
     "format": "{icon} {capacity: >3}%",
-    "format-charging": "  {capacity}%",
-    "format-plugged": "  {capacity}%",
-    "format-alt": "{icon}  {time}",
     // "format-good": "", // An empty format will hide the module
     // "format-full": "",
     "format-icons": ["", "", "", "", ""]
+    //"format-icons": ["", "", "", "", "", "", "", "", "", ""]
   },
   "network": {
     // "interface": "wlp2s0", // (Optional) To force the use of this interface
@@ -242,10 +226,6 @@
     // "format-ethernet": " {ifname}: {ipaddr}/{cidr}",
     "format-ethernet": "  Wired",
     "format-disconnected": "⚠  Disconnected",
-    "tooltip-format": " {ifname} via {gwaddri}",
-    "tooltip-format-wifi": "   {essid} ({signalStrength}%)",
-    "tooltip-format-ethernet": "  {ifname} ({ipaddr}/{cidr})",
-    "tooltip-format-disconnected": "⚠  Disconnected",
     // "on-click": "alacritty -e nmtui"
     "on-click": "nm-connection-editor"
   },
@@ -277,7 +257,7 @@
   },
   "custom/power": {
     "format": "⏻",
-    "on-click": "wlogout -p layer-shell",
+    "on-click": "nwgbar",
     "tooltip": false
   },
   "custom/keyboard-layout": {
@@ -291,8 +271,8 @@
     "on-click": "~/.config/waybar/scripts/keyhint.sh"
   },
   "custom/launcher": {
-    "format": "",
-    "on-click": "rofi -show drun -replace",
+    "format": " ",
+    "on-click": "exec nwg-drawer -c 7 -is 70 -spacing 23",
     "tooltip": false
   }
 }

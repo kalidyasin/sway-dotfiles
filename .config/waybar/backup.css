@@ -10,7 +10,6 @@
  * Keyframes
  * -------------------------------------------------------------------------- */
 
-/* @import "tokyonight-dark.css"; */
 @import "machiatto.css";
 
 /*
@@ -46,22 +45,22 @@
     color: @lavender;
     border: 0;
     padding: 0 0;
-    font-family: "Fira Sans Semibold", "Font Awesome 6 Free", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-family: UbuntuMono;
     /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
     /* font-family: "Hack Nerd Font"; */
-    /* font-size: 18px; */
-    /* font-weight: bold; */
+    font-size: 18px;
+    font-weight: bold;
     /* padding-bottom:4px;
      padding-top: 4px; */
 }
 
 window#waybar {
-    border: 0px solid rgba(0, 0, 0, 0);
+    border-bottom: 2px solid @mauve;
     /* border-radius: 10px; */
     /* background:#2d2a2e; */
     /* background-color: rgba(36, 39, 58, 0.85); */
-    background-color: rgba(0, 0, 0, 0);
-    /* background-color: shade(#1e1e2e, 0.95); */
+    /* background-color: rgba(0, 0, 0, 0); */
+    background-color: shade(#1e1e2e, 0.95);
 }
 
 #workspaces button {
@@ -69,22 +68,7 @@ window#waybar {
     border-radius: 50%;
     /* background-color: @base; */
     margin: 0px 0px;
-    padding: 4 6 2 0;
-}
-
-#workspaces button:hover {
-    color: @mauve;
-    box-shadow: none;
-    /* Remove predefined box-shadow */
-    text-shadow: none;
-    /* Remove predefined text-shadow */
-    border: 0px;
-    background: none;
-}
-
-#workspaces button:hover * {
-    color: @mauve;
-    background-color: @base;
+    padding: 2 3 2 3;
 }
 
 #workspaces * {
@@ -96,17 +80,18 @@ window#waybar {
     background-color: @base;
     opacity: 1;
     border-radius: 10px;
-    margin: 8px 0px 8px 8px;
+    margin: 8px 0px;
+
 }
 
 #workspaces button.focused {
-    color: @mauve;
+    color: @flamingo;
     border-radius: 20px;
     /* background-color: @flamingo; */
 }
 
 #workspaces button.focused * {
-    color: @mauve;
+    color: @flamingo;
 }
 
 #mode {
@@ -115,11 +100,11 @@ window#waybar {
 
 #clock,
 #custom-swap,
+#custom-background,
 #custom-cava-internal,
 #battery,
 #cpu,
 #memory,
-#disk,
 #idle_inhibitor,
 #temperature,
 #custom-keyboard-layout,
@@ -127,16 +112,12 @@ window#waybar {
 #network,
 #pulseaudio,
 #mode,
-#window,
 #tray,
 #custom-power,
-#custom-pacman,
-#custom-launcher,
-#custom-system,
-#mpd {
-    padding: 5px 8px;
+#custom-pacman {
+    padding: 5px 14px;
     border-style: solid;
-    background-color: shade(@base, 1);
+    background-color: shade(@base, 1.1);
     opacity: 1;
     margin: 8px 0;
 }
@@ -144,50 +125,6 @@ window#waybar {
 /* -----------------------------------------------------------------------------
   * Module styles
   * -------------------------------------------------------------------------- */
-#mpd {
-    border-radius: 10px;
-    color: @mauve;
-    margin-left: 5px;
-    background-color: rgba(0, 0, 0, 0);
-}
-
-#mpd.2 {
-    border-radius: 10px 0px 0px 10px;
-    margin: 8px 0px 8px 6px;
-    padding: 4px 12px 4px 10px;
-}
-
-#mpd.3 {
-    border-radius: 0px 0px 0px 0px;
-    margin: 8px 0px 8px 0px;
-    padding: 4px;
-}
-
-#mpd.4 {
-    border-radius: 0px 10px 10px 0px;
-    margin: 8px 0px 8px 0px;
-    padding: 4px 10px 4px 14px;
-}
-
-#mpd.2,
-#mpd.3,
-#mpd.4 {
-    background-color: @base;
-    font-size: 14px;
-}
-
-#mode {
-    border-radius: 10px;
-    color: @mauve;
-    margin-right: 5px;
-}
-
-#window {
-    border-radius: 10px;
-    color: @sky;
-    margin-right: 5px;
-}
-
 #custom-cava-internal {
     border-radius: 10px;
     color: @mauve;
@@ -195,9 +132,15 @@ window#waybar {
 
 #custom-swap {
     border-radius: 10px;
-    color: @base;
+    color: white;
     margin-left: 15px;
-    background-color: @mauve;
+}
+
+#custom-background {
+    border-radius: 0px 10px 10px 0px;
+    background-color: @base;
+    color: white;
+    padding: 5px 14px 5px 5px;
 }
 
 #clock {
@@ -242,11 +185,6 @@ window#waybar {
     animation-direction: alternate;
 }
 
-#custom-system {
-    color: @sky;
-    /* border-bottom: 2px solid @sky; */
-}
-
 #cpu {
     color: @sky;
     /* border-bottom: 2px solid @sky; */
@@ -257,11 +195,8 @@ window#waybar {
 }
 
 #memory {
-    color: @sky;
-}
-
-#disk {
-    color: @sky;
+    background-color: #d3869b;
+    color: @base;
 }
 
 #network.disabled {
@@ -305,7 +240,6 @@ window#waybar {
 #idle_inhibitor {
     background-color: #ebcb8b;
     color: @base;
-    border-radius: 10px;
 }
 
 #tray {
@@ -320,9 +254,8 @@ window#waybar {
 #custom-launcher {
     background-color: @mauve;
     color: @base;
-    border-radius: 10px;
-    padding: 5px 10px;
-    margin-left: 15px;
+    border-radius: 0px 15px 0px 0px;
+    padding: 5px 5px 5px 15px;
 }
 
 #custom-power {
@@ -334,12 +267,18 @@ window#waybar {
     padding: 5px 10px;
 }
 
-/* #window { */
-/*     border-radius: 10px; */
-/*     color: @base; */
-/*     margin-left: 15px; */
-/*     background-color: @mauve; */
-/* } */
+#window {
+    border-style: hidden;
+    margin-left: 10px;
+    /* margin-top:1px;  
+     padding: 8px 1rem; */
+    margin-right: 10px;
+    color: #eceff4;
+}
+
+#mode {
+    margin-bottom: 3px;
+}
 
 #custom-keyboard-layout {
     color: @peach;
