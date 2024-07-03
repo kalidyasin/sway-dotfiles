@@ -69,7 +69,7 @@ window#waybar {
     border-radius: 50%;
     /* background-color: @base; */
     margin: 0px 0px;
-    padding: 2 6 2 0;
+    padding: 4 6 2 0;
 }
 
 #workspaces button:hover * {
@@ -96,6 +96,7 @@ window#waybar {
     opacity: 1;
     border-radius: 10px;
     margin: 8px 0px 8px 8px;
+    padding: 0px 10px;
 }
 
 #workspaces button.focused {
@@ -126,9 +127,11 @@ window#waybar {
 #network,
 #pulseaudio,
 #mode,
+#window,
 #tray,
 #custom-power,
 #custom-pacman,
+#custom-system,
 #mpd {
     padding: 5px 8px;
     border-style: solid;
@@ -182,6 +185,18 @@ window#waybar {
 #mpd.4 {
     background-color: @base;
     font-size: 14px;
+}
+
+#window {
+    border-radius: 10px;
+    color: @base;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: @mauve;
+}
+
+window#waybar.empty #window {
+    background-color:transparent;
 }
 
 #custom-swap {
@@ -240,6 +255,11 @@ window#waybar {
     animation-direction: alternate;
 }
 
+#custom-system {
+    color: @sky;
+    /* border-bottom: 2px solid @sky; */
+}
+
 #cpu {
     color: @sky;
     /* border-bottom: 2px solid @sky; */
@@ -294,6 +314,7 @@ window#waybar {
 #idle_inhibitor {
     background-color: #ebcb8b;
     color: @base;
+    border-radius: 10px;
 }
 
 #tray {
