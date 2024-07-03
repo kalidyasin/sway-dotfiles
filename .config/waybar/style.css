@@ -185,7 +185,8 @@ window#waybar {
 #window {
     border-radius: 10px;
     color: @sky;
-    margin-right: 5px;
+    margin-left: 15px;
+    background-color: @mauve;
 }
 
 #custom-cava-internal {
