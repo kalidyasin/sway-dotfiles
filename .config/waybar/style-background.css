@@ -120,6 +120,7 @@ window#waybar {
 #battery,
 #cpu,
 #memory,
+#disk,
 #idle_inhibitor,
 #temperature,
 #custom-keyboard-layout,
@@ -270,6 +271,10 @@ window#waybar.empty #window {
 }
 
 #memory {
+    color: @sky;
+}
+
+#disk {
     color: @sky;
 }
 
