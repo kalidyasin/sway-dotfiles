@@ -50,8 +50,8 @@
       "5": "",
       "6": "",
       "7": "",
-      "8": "",
-      "9": "",
+      "8": "",
+      "9": "",
       "10": ""
     }
   },
@@ -118,7 +118,15 @@
     "format": "<span style=\"italic\">{}</span>"
   },
   "sway/window": {
-    "format": "<span color=\"#3b4252\" style=\"italic\">{}</span>"
+        "rewrite": {
+            "(.*) - Brave": "$1",
+            "(.*) - Chromium": "$1",
+            "(.*) - Brave Search": "$1",
+            "(.*) - Outlook": "$1",
+            "(.*) Microsoft Teams": "$1"
+        },
+        "separate-outputs": true,
+    "format": "<span color=\"#24273a\" style=\"italic\">{}</span>"
   },
   "idle_inhibitor": {
     "format": "{icon}",
@@ -174,7 +182,7 @@
   },
   "temperature": {
     // "thermal-zone": 2,
-    "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+    // "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
     "critical-threshold": 80,
     // "format-critical": "{temperatureC}°C ",
     "format": "  {temperatureC}°C"
