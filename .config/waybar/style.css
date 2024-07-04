@@ -220,7 +220,8 @@ window#waybar.empty #window {
 }
 
 #battery {
-    color: #d8dee9;
+    color: @green;
+    /* border-bottom: 2px solid @sky; */
     /* border-bottom: 2px solid #d8dee9; */
     border-radius: 0 10px 10px 0;
     margin-right: 10px;
@@ -237,6 +238,12 @@ window#waybar.empty #window {
         /* border-bottom: 2px solid @red; */
     }
 }
+
+#battery.warning:not(.charging) {
+    color: @yellow;
+    /* border-bottom: 2px solid #81a1c1; */
+}
+
 
 #battery.critical:not(.charging) {
     color: #bf616a;
