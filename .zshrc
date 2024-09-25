@@ -165,6 +165,16 @@ function pathprepend() {
     done
 }
 
+# y shell wrapper that provides the ability to change the current working directory when exiting Yazi.
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
 # Add the most common personal binary paths located inside the home folder
 # (these directories are only added if they exist)
 pathprepend "$HOME/bin" "$HOME/sbin" "$HOME/.local/bin" "$HOME/local/bin" "$HOME/.bin"

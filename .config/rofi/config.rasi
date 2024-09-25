@@ -9,7 +9,7 @@ configuration {
   // // enabling the icons
   // show-icons: true;
   // icon-theme: "Papirus";
-  modi:                       "drun,run";
+  modi:                       "drun,run,window";
   font:                       "Fira Sans Bold 12";
   show-icons:                 true;
   icon-theme:                 "kora";
