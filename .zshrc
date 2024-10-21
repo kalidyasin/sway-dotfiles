@@ -273,10 +273,10 @@ fi
 # FZF
 #######################################################
 
-# enable fzf keybindings
-if [ -f /usr/share/fzf/shell/key-bindings.zsh ]; then
-    . /usr/share/fzf/shell/key-bindings.zsh
-fi
+# # enable fzf keybindings
+# if [ -f /usr/share/fzf/shell/key-bindings.zsh ]; then
+#     . /usr/share/fzf/shell/key-bindings.zsh
+# fi
 
 #######################################################
 # Functions
@@ -356,8 +356,10 @@ source ~/Dotfiles/config/zsh/zsh-syntax-highlightin-tokyonight.zsh
 # Shell integrations
 #######################################################
 
+# Set up fzf key bindings and fuzzy completion
 # eval "$(fzf --zsh)"
-source "/usr/share/fzf/shell/key-bindings.zsh"
+source <(fzf --zsh)
+# source "/usr/share/fzf/shell/key-bindings.zsh"
 
 # Zoxide config for zsh plugins 
 eval "$(zoxide init --cmd cd zsh)"
