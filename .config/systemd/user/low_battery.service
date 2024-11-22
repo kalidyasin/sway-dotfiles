@@ -1,0 +1,5 @@
+[Unit]
+Description=Battery Notification Service
+
+[Service]
+ExecStart=/home/kalid/Dotfiles/.config/systemd/user/low-battery.sh
