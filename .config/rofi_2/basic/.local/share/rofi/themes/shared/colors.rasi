@@ -3,7 +3,7 @@
 /* Colors */
 
 * {
-    background:     #1f2335;
+    background:     #1A1B26FF;
     background-alt: #414868;
     border:         #7aa2f7;
     foreground:     #c0caf5;

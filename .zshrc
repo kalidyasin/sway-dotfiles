@@ -344,8 +344,8 @@ source ~/.config/zsh/zsh-syntax-highlightin-tokyonight.zsh
 # Shell integrations
 #######################################################
 
-# eval "$(fzf --zsh)"
-source "/usr/share/fzf/shell/key-bindings.zsh"
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 
 # Zoxide config for zsh plugins 
 eval "$(zoxide init --cmd cd zsh)"
@@ -354,4 +354,3 @@ eval "$(zoxide init --cmd cd zsh)"
 
 # Tmuxifier config for zsh plugins  
 eval "$(tmuxifier init -)"
-
