@@ -15,5 +15,5 @@ configuration{
     sidebar-mode: true;
 }
 
-@theme "launcher"
+@theme "~/.config/rofi/myconfigs/launcher.rasi"
 
