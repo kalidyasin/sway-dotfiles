@@ -72,6 +72,12 @@ export SUDO_EDITOR=nvim
 export FCEDIT=nvim
 export TERMINAL=alacritty
 export BROWSER=com.brave.Browser
+# atac Variables
+export ATAC_KEY_BINDINGS=~/.config/atac/keybindings.toml
+export ATAC_THEME=~/.config/atac/theme.toml
+
+# Add the most common personal binary paths located inside the home folder
+
 if [[ -x "$(command -v bat)" ]]; then
 	export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 	export PAGER=bat
@@ -349,6 +355,22 @@ function random_bars() {
 	done
 	echo
 }
+
+function print_tmux() {
+	echo " ███████████ ██████   ██████ █████  █████ █████ █████
+░█░░░███░░░█░░██████ ██████ ░░███  ░░███ ░░███ ░░███ 
+░   ░███  ░  ░███░█████░███  ░███   ░███  ░░███ ███  
+    ░███     ░███░░███ ░███  ░███   ░███   ░░█████   
+    ░███     ░███ ░░░  ░███  ░███   ░███    ███░███  
+    ░███     ░███      ░███  ░███   ░███   ███ ░░███ 
+    █████    █████     █████ ░░████████   █████ █████
+   ░░░░░    ░░░░░     ░░░░░   ░░░░░░░░   ░░░░░ ░░░░░"
+}
+
+function ssh() {
+  TERM=xterm-256color command ssh "$@"
+}
+
 
 #######################################################
 # ZSH Syntax highlighting
